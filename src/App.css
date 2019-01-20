@@ -37,7 +37,3 @@
   grid-template-columns: 25% 75%;
   grid-column-gap: 2%;
 }
-
-input, label {
-  diplay:block;
-}
