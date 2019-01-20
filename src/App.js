@@ -19,8 +19,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div class="grid-container">
-          <div id="mySidenav" class="sidenav">
+        <div className="grid-container">
+          <div id="mySidenav" className="sidenav">
             <h1>Bloc Chat</h1>
             <RoomList
               firebase={firebase}
