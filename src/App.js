@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
 import * as firebase from 'firebase';
-import { Route, Link } from 'react-router-dom';
+/* import { Route, Link } from 'react-router-dom';*/
 import RoomList from './components/RoomList';
+import MessageList from './components/MessageList';
 
 // Initialize Firebase
 var config = {
@@ -16,6 +17,21 @@ var config = {
   firebase.initializeApp(config);
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      activeRoomKey: '',
+      activeRoomName: 'Please select a room from the list on the left'
+    };
+
+  }
+
+  setActiveRoomInfo(roomKey, roomName) {
+    this.setState({ activeRoomKey: roomKey, activeRoomName:  roomName});
+    console.log(roomKey, roomName);
+  }
+
   render() {
     return (
       <div className="App">
@@ -24,10 +40,15 @@ class App extends Component {
             <h1>Bloc Chat</h1>
             <RoomList
               firebase={firebase}
+              setActiveRoomInfo={(roomKey, roomName) => this.setActiveRoomInfo(roomKey, roomName)}
             />
           </div>
           <div>
-            Rooms content will go here
+            <h2> Room: {this.state.activeRoomName} </h2>
+            <MessageList
+              firebase={firebase}
+              activeRoomKey={this.state.activeRoomKey}
+            />
           </div>
         </div>
       </div>
