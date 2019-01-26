@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './RoomList.css';
+
 
 class RoomList extends Component {
   constructor(props) {
@@ -54,8 +54,11 @@ class RoomList extends Component {
         </div>
         <div>
           <ul>
-            { this.state.rooms.map( (room, index) =>
-              <li key={index}>
+            { this.state.rooms.map( (room) =>
+              <li
+                key={room.key}
+                onClick={ () => this.props.setActiveRoomInfo(room.key, room["name"]) }
+              >
                 {room["name"]}
               </li>
             )}
