@@ -4,6 +4,7 @@ import * as firebase from 'firebase';
 /* import { Route, Link } from 'react-router-dom';*/
 import RoomList from './components/RoomList';
 import MessageList from './components/MessageList';
+import User from './components/User';
 
 // Initialize Firebase
 var config = {
@@ -16,13 +17,16 @@ var config = {
 };
   firebase.initializeApp(config);
 
+
+
 class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       activeRoomKey: '',
-      activeRoomName: 'Please select a room from the list on the left'
+      activeRoomName: 'Please select a room from the list on the left',
+      user: 'Guest'
     };
 
   }
@@ -32,12 +36,21 @@ class App extends Component {
     console.log(roomKey, roomName);
   }
 
+  setUser(user) {
+    this.setState({user: user});
+  }
+
   render() {
     return (
       <div className="App">
         <div className="grid-container">
           <div id="mySidenav" className="sidenav">
             <h1>Bloc Chat</h1>
+            <User
+              firebase={firebase}
+              user={this.state.user}
+              setUser={(user) => this.setUser(user)}
+            />
             <RoomList
               firebase={firebase}
               setActiveRoomInfo={(roomKey, roomName) => this.setActiveRoomInfo(roomKey, roomName)}
