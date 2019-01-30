@@ -38,6 +38,7 @@ class App extends Component {
 
   setUser(user) {
     this.setState({user: user});
+    console.log(this.state.user.displayName); // Verify that username is saved to App state
   }
 
   render() {
