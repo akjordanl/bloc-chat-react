@@ -24,8 +24,8 @@ class App extends Component {
     super(props);
 
     this.state = {
-      activeRoomKey: '',
-      activeRoomName: 'Please select a room from the list on the left',
+      activeRoomKey: 1,
+      activeRoomName: 'room1',
       user: 'Guest'
     };
 
@@ -46,21 +46,27 @@ class App extends Component {
       <div className="App">
         <div className="grid-container">
           <div id="mySidenav" className="sidenav">
-            <h1>Bloc Chat</h1>
-            <User
-              firebase={firebase}
-              user={this.state.user}
-              setUser={(user) => this.setUser(user)}
-            />
-            <RoomList
-              firebase={firebase}
-              setActiveRoomInfo={(roomKey, roomName) => this.setActiveRoomInfo(roomKey, roomName)}
-            />
+            <div>
+              <p>Bloc Chat</p>
+              <User
+                firebase={firebase}
+                user={this.state.user}
+                setUser={(user) => this.setUser(user)}
+              />
+            </div>
+            <div>
+              <RoomList
+                firebase={firebase}
+                setActiveRoomInfo={(roomKey, roomName) => this.setActiveRoomInfo(roomKey, roomName)}
+              />
+            </div>
           </div>
           <div>
-            <h2> Room: {this.state.activeRoomName} </h2>
+            <p> Room: {this.state.activeRoomName} </p>
             <MessageList
               firebase={firebase}
+              activeRoomKey={this.state.activeRoomKey}
+              user={this.state.user}
               activeRoomKey={this.state.activeRoomKey}
             />
           </div>

@@ -41,7 +41,7 @@ class RoomList extends Component {
       <div>
         <div>
           <form onSubmit={ (e) => this.createRoom(e) }>
-            <h2>Create new room</h2>
+            <p>Create new room</p>
             <label>
               New room name:
               <input
