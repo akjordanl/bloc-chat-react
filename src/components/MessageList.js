@@ -36,8 +36,8 @@ class MessageList extends Component {
       roomId: this.props.activeRoomKey,
       sentAt: Date(this.props.firebase.database.ServerValue.TIMESTAMP)
     });
+    this.setState( { newMessage: ''} );
   }
-
 
   render() {
 
@@ -65,10 +65,11 @@ class MessageList extends Component {
            <form onSubmit={ (e) => this.sendMessage(e) }>
              <textarea
                name="message"
+               placeholder="Type your message here"
                rows="3"
+               value={this.state.newMessage}
                onChange={ (e) => this.handleChange(e) }
                >
-               Type your message here
              </textarea>
              <input type="submit"/>
            </form>
